@@ -1,0 +1,440 @@
+:root {
+    --dark-bg: #020202;
+    --light-bg: #f8f8f6;
+    --gold: #c09f6c;
+    --dark-gold: #9b7743;
+    --text-light: #ffffff;
+    --text-dark: #2a2a2a;
+}
+
+* { 
+    margin: 0; 
+    padding: 0; 
+    box-sizing: border-box; 
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--light-bg);
+    color: var(--text-dark);
+    line-height: 1.6;
+}
+
+header {
+    background: var(--dark-bg);
+    color: var(--text-light);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+/* ==================== NAV + HAMBURGER ==================== */
+.nav {
+    background: var(--dark-bg);
+    padding: 0.6rem 1rem;
+    display: flex;
+    justify-content: center;        /* Centers logo */
+    align-items: center;
+    min-height: 75px;
+    position: relative;
+}
+
+.nav::after {
+    content: '';
+    position: absolute;
+    left: 0; right: 0; bottom: 0;
+    height: 12px;
+    background: linear-gradient(to bottom, #020202, #ffffff);
+}
+
+.nav-logo {
+    height: 95px;
+    width: auto;
+    max-width: 100%;
+    object-fit: contain;
+}
+
+/* Hamburger - Overlay on mobile */
+/* Hamburger */
+.hamburger {
+    display: none;
+    position: absolute;
+    right: 20px;
+    top: 35%;
+    transform: translateY(-50%);
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 21px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    z-index: 101;
+    padding: 0;
+}
+
+.hamburger span {
+    width: 100%;
+    height: 3px;
+    background-color: var(--text-light);
+    transition: all 0.3s ease;
+    border-radius: 3px;
+}
+
+/* X animation when active */
+.hamburger.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+
+.hamburger.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -6px);
+}
+
+.nav-links {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+    margin-top: 3rem;
+    margin-right: 2rem;
+}
+
+.nav-links a {
+    color: var(--text-light);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.05rem;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+    color: var(--gold);
+}
+
+/* ==================== MOBILE ONLY ==================== */
+@media (max-width: 768px) {
+    body, html {
+        overflow-x: hidden;
+    }
+
+    .nav {
+        min-height: 70px;
+        padding: 0.6rem 1rem;
+    }
+
+    .nav-logo {
+        height: 65px;
+    }
+
+    .hamburger {
+        display: flex;
+    }
+
+    .nav-links {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: var(--dark-bg);
+        flex-direction: column;
+        gap: 0;
+        margin: 0;
+        padding: 1rem 0;
+        box-shadow: 0 10px 15px rgba(0,0,0,0.3);
+        transform: scaleY(0);
+        transform-origin: top;
+        transition: transform 0.3s ease;
+        z-index: 100;
+    }
+
+    .nav-links.active {
+        transform: scaleY(1);
+    }
+
+    .nav-links li {
+        text-align: center;
+        padding: 1rem 0;
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .nav-links li:last-child {
+        border-bottom: none;
+    }
+
+    /* === FONTS === */
+    body {
+        font-size: 15px;
+    }
+
+    h1, h2 {
+        font-size: 1.9rem !important;
+        line-height: 1.15;
+    }
+
+    body p {
+        font-size: 1rem !important;
+    }
+
+    footer p {
+        font-size: 0.85rem !important;
+    }
+
+    .nav-links a {
+        font-size: 1.1rem;
+    }
+
+    /* === CARDS (mobile) === */
+    .card-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1.0rem;
+        justify-items: center;   /* this centers the cards properly */
+    }
+
+    .card {
+        width: 90%;
+        max-width: 420px;
+        border-radius: 10px;
+        overflow: hidden;
+        margin: 0 auto;          /* backup centering */
+    }
+    
+    .card img {
+        height: 100px;             /* Better height for mobile */
+        width: 100%;
+        object-fit: cover;
+        display: block;
+    }
+
+    .card-content {
+        padding: 1.1rem 1rem;
+    }
+
+    .card-content h3 {
+        font-size: 1.25rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .card-content p {
+        font-size: 0.95rem;
+        line-height: 1.45;
+    }
+    /* === CONTACT SECTION === */
+    #contact > div {
+        max-width: 100% !important;
+        padding: 0 1rem;
+    }
+
+    .contact-card {
+        padding: 1.4rem 1rem;
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+        margin-bottom: 1.2rem;
+    }
+
+    .contact-card p,
+    .contact-card a {
+        word-break: break-word;
+        font-size: 1rem;
+    }
+
+    .contact-card a {
+        display: inline-block;
+        padding: 6px 0;
+        min-height: 44px;
+    }
+}
+/* Rest of your styles */
+section {
+    padding: 1rem 1rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+h2 {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    text-align: center;
+    color: var(--dark-gold);
+}
+
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.card {
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transition: transform 0.3s;
+}
+
+.card:hover { 
+    transform: translateY(-10px); 
+}
+
+.card img { 
+    width: 100%; 
+    height: 200px; 
+    object-fit: cover; 
+}
+
+.card-content { 
+    padding: 1.5rem; 
+}
+
+.about-text, .contact-intro {
+    max-width: 800px;
+    margin: 0 auto 3rem;
+    text-align: center;
+    font-size: 1.2rem;
+}
+
+.contact {
+    background: linear-gradient(to top, #ffffff, #020202);
+    color: var(--text-light);
+}
+
+.contact h2 { 
+    color: var(--gold); 
+}
+
+.contact-wrapper {
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.contact-card {
+    background: rgba(0,0,0,0.4);
+    padding: 2rem;
+    border-radius: 12px;
+    margin-bottom: 2rem;
+    border: 1px solid rgba(192, 159, 108, 0.2);
+    transition: all 0.3s;
+}
+
+.contact-card:hover {
+    background: rgba(0,0,0,0.6);
+    transform: translateY(-5px);
+    border-color: var(--gold);
+}
+
+.contact-card a {
+    color: var(--gold);
+    text-decoration: none;
+}
+
+.contact-card a:hover { 
+    text-decoration: underline; 
+}
+
+.footer {
+    background: var(--dark-bg);
+    color: var(--text-light);
+    text-align: center;
+    padding: 1rem 0.5rem;
+    position: relative;
+}
+
+.footer::before {
+    content: '';
+    position: absolute;
+    left: 0; right: 0; top: 0;
+    height: 12px;
+    background: linear-gradient(to bottom, #ffffff, #020202);
+}
+
+/* Carousel */
+.carousel-section {
+    position: relative;
+    height: 600px;
+    overflow: hidden;
+    background: linear-gradient(to top, var(--light-bg), #020202, var(--light-bg));
+    color: var(--text-light);
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-image: linear-gradient(to bottom, var(--light-bg), var(--gold), var(--light-bg)) 1;
+}
+
+.carousel-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.carousel-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0,0,0,0.5);
+    color: white;
+    border: none;
+    font-size: 2rem;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 10;
+    transition: all 0.3s;
+}
+
+.carousel-btn:hover {
+    background: var(--gold);
+    color: #111;
+}
+
+.prev { left: 20px; }
+.next { right: 20px; }
+
+.carousel-dots {
+    position: absolute;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 12px;
+    z-index: 10;
+}
+
+.dot {
+    width: 14px;
+    height: 14px;
+    background: rgba(255,255,255,0.6);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.dot.active {
+    background: var(--gold);
+    transform: scale(1.2);
+}
+
+/* Carousel responsive */
+@media (max-width: 768px) {
+    .carousel-section {
+        height: 400px;
+    }
+}
+
+#services {
+    scroll-margin-top: 100px;
+}

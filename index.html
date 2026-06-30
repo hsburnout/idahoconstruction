@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Idaho Construction & Remodel | Built with Integrity</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <nav class="nav">
+            <img src="images/website_logo_v1.png" alt="Logo" class="nav-logo">
+            
+            <!-- Hamburger -->
+            <button class="hamburger" id="hamburger" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <!-- Menu -->
+            <ul class="nav-links" id="nav-links">
+                <li><a href="#" class="active">Home</a></li>
+                <li><a href="about.html#services">Services</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="about.html#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Photo Carousel -->
+    <section class="carousel-section">
+        <div class="carousel-container">
+            <div class="carousel-slide" id="carousel">
+                <!-- Images will be added by JavaScript -->
+            </div>
+           
+            <!-- Navigation arrows -->
+            <button class="carousel-btn prev" onclick="prevSlide()">‹</button>
+            <button class="carousel-btn next" onclick="nextSlide()">›</button>
+           
+            <!-- Dots -->
+            <div class="carousel-dots" id="dots"></div>
+        </div>
+    </section>
+
+    <!-- Welcome / Intro text -->
+    <section style="text-align: center; padding: 4rem 2rem; background: var(--light-bg);">
+        <h1 style="font-size: 2.8rem; margin-bottom: 1rem; color: var(--dark-gold);">Built with Integrity in Idaho</h1>
+        <p style="font-size: 1.3rem; max-width: 700px; margin: 0 auto;">
+            Custom homes, renovations, and remodels done right.
+            Serving Boise and surrounding areas with honest work and quality craftsmanship.
+        </p>
+    </section>
+
+    <footer class="footer">
+        <p>&copy; 2026 Idaho Construction & Remodel. All Rights Reserved. \n Local. Reliable. Idaho Proud.</p>
+    </footer>
+
+    <script>
+        // Carousel Script
+        const portfolioImages = [
+            "images/portfolio/stock_image1.webp",
+            "images/portfolio/stock_image3.jpeg",
+            "images/portfolio/stock_image4.avif",
+            "images/portfolio/stock_image5.webp"
+        ];
+
+        let currentSlide = 0;
+        let slideInterval;
+
+        function createCarousel() {
+            const carousel = document.getElementById('carousel');
+            const dotsContainer = document.getElementById('dots');
+
+            carousel.innerHTML = '';
+            dotsContainer.innerHTML = '';
+
+            portfolioImages.forEach((src, index) => {
+                const img = document.createElement('img');
+                img.src = src;
+                img.alt = `Project ${index + 1}`;
+                img.className = 'carousel-image';
+                if (index === 0) img.style.display = 'block';
+                carousel.appendChild(img);
+
+                const dot = document.createElement('span');
+                dot.className = 'dot';
+                if (index === 0) dot.classList.add('active');
+                dot.onclick = () => goToSlide(index);
+                dotsContainer.appendChild(dot);
+            });
+        }
+
+        function showSlide(n) {
+            const slides = document.querySelectorAll('.carousel-image');
+            const dots = document.querySelectorAll('.dot');
+
+            slides.forEach(slide => slide.style.display = 'none');
+            dots.forEach(dot => dot.classList.remove('active'));
+
+            slides[n].style.display = 'block';
+            dots[n].classList.add('active');
+            currentSlide = n;
+        }
+
+        function nextSlide() {
+            let newSlide = currentSlide + 1;
+            if (newSlide >= portfolioImages.length) newSlide = 0;
+            showSlide(newSlide);
+        }
+
+        function prevSlide() {
+            let newSlide = currentSlide - 1;
+            if (newSlide < 0) newSlide = portfolioImages.length - 1;
+            showSlide(newSlide);
+        }
+
+        function goToSlide(n) {
+            showSlide(n);
+            resetInterval();
+        }
+
+        function resetInterval() {
+            clearInterval(slideInterval);
+            slideInterval = setInterval(nextSlide, 5000);
+        }
+
+        // Hamburger Menu + Close on link click
+        function initHamburger() {
+            const hamburger = document.getElementById('hamburger');
+            const navLinks = document.getElementById('nav-links');
+
+            if (!hamburger || !navLinks) return;
+
+            hamburger.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+                hamburger.classList.toggle('active');
+            });
+
+            // Close menu when clicking a link
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.addEventListener('click', () => {
+                    navLinks.classList.remove('active');
+                    hamburger.classList.remove('active');
+                });
+            });
+        }
+
+        // Initialize everything
+        window.onload = () => {
+            createCarousel();
+            showSlide(0);
+            resetInterval();
+            initHamburger();
+        };
+    </script>
+</body>
+</html>

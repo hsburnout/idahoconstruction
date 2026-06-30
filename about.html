@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Idaho Construction & Remodel | Built with Integrity</title>
+    
+    <link rel="stylesheet" href="styles.css">
+    
+</head>
+<body>
+    <header>
+        <nav class="nav">
+            <img src="images/website_logo_v1.png" alt="Logo" class="nav-logo">
+            
+            <!-- Hamburger -->
+            <button class="hamburger" id="hamburger" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <!-- Menu -->
+            <ul class="nav-links" id="nav-links">
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="about.html#services">Services</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="about.html#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="about" class="about">
+        <h2>About Us</h2>
+        <p style="max-width: 800px; margin: 0 auto 3rem; text-align: center; font-size: 1.2rem;">
+            At Idaho Construction & Remodel, we specialize in custom home builds, additions, kitchens, bathrooms, and more.
+            With a commitment to quality craftsmanship and honest communication, we turn your vision into reality.
+        </p>
+        <div class="card-grid">
+            <div class="card">
+                <img src="https://picsum.photos/id/1015/600/400" alt="Mountain View">
+                <div class="card-content">
+                    <h3>Our Story</h3>
+                    <p>Parker Miles and Kyle Crumley bring years of experience in residential construction across Idaho.</p>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://picsum.photos/id/106/600/400" alt="Tools">
+                <div class="card-content">
+                    <h3>Our Values</h3>
+                    <p>Quality craftsmanship, dependable service, and local pride define everything we do.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="services" class="services">
+        <h2>Our Services</h2>
+        <div class="card-grid">
+            <div class="card">
+                <img src="https://picsum.photos/id/1077/600/400" alt="Custom Build">
+                <div class="card-content">
+                    <h3>Custom Builds</h3>
+                    <p>From ground up new homes to complete renovations.</p>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://picsum.photos/id/201/600/400" alt="Kitchen">
+                <div class="card-content">
+                    <h3>Kitchens & Bathrooms</h3>
+                    <p>Modern, functional designs tailored to your lifestyle.</p>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://picsum.photos/id/316/600/400" alt="Additions">
+                <div class="card-content">
+                    <h3>Additions & Remodels</h3>
+                    <p>Expand your living space with seamless integrations.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <h2>Get In Touch</h2>
+        <div style="max-width: 600px; margin: 0 auto; text-align: center;">
+            <p style="font-size: 1.2rem; margin-bottom: 3rem; opacity: 0.9;">
+                Ready to start your project? Contact us today for a consultation.
+            </p>
+            
+            <div class="contact-card">
+                <p><strong>Parker Miles</strong><br>
+                <a href="tel:5032690909" style="color: var(--gold);">503.269.0909</a><br>
+                <a href="mailto:idaho1construction@gmail.com" class"btn" style="color: #FFFFFF;">idaho1construction@gmail.com</a>
+            </div>
+            
+            <div class="contact-card">
+                <p><strong>Kyle Crumley</strong><br>
+                <a href="tel:2088074916" style="color: var(--gold);">208.807.4916</a><br>
+                <a href="mailto:idaho1construction@gmail.com" class"btn" style="color: #FFFFFF;">idaho1construction@gmail.com</a>
+            </div>
+    
+        </div>
+    </section>
+
+    <footer class="footer">
+        <p>&copy; 2026 Idaho Construction & Remodel. All Rights Reserved.</p>
+        <p style="margin-top: 1rem; font-size: 0.9rem;">Local. Reliable. Idaho Proud.</p>
+    </footer>
+
+    <script>
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                if (this.getAttribute('href') !== '#') {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        // Hamburger Menu
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('nav-links');
+
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            hamburger.classList.toggle('active');
+        });
+
+        // Close menu when clicking a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                hamburger.classList.remove('active');
+            });
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    e.preventDefault();
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
